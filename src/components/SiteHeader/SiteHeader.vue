@@ -171,4 +171,5 @@
 </script>
 
 <style scoped src="../../../assets/scss/application.scss">
+
 </style>
