@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+.gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+
+    @include mq(lg) {
+        min-width: 72rem;
+    }
+
+    &__title {
+        @include header-h1;
+
+        margin-bottom: map-get($mq-container-indents, 'sx') / 2;
+        text-align: center;
+        color: #fff;
+
+        @include mq(lg) {
+            margin-bottom: 6.4rem;
+        }
+    }
+
+    &__slider-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 3.2rem 0;
+
+
+        @include mq(lg) {
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+        }
+
+    }
+
+    &__slider {
+        @include mq-custom(max, 1195px) {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+
+        }
+
+        .slick-slide {
+            position: relative;
+            opacity: .4;
+
+            &.no-fade,
+            &.slick-current {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__slider-body {
+        position: relative;
+    }
+
+    &__slider-nav {
+        position: absolute;
+        bottom: map-get($mq-container-indents, 'sx') / 2;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 19.6rem;
+        margin: 0 auto;
+
+        .slick-slide {
+            border-radius: $border-radius-min;
+            overflow: hidden;
+
+            &:not(:last-child) {
+                margin-right: 1px;
+            }
+        }
+    }
+
+    &__slider-item,
+    &__slider-nav-item {
+        display: block !important;
+        cursor: pointer;
+    }
+
+    &__slider-nav-item {
+        opacity: 1;
+
+        &.is-active {
+            opacity: .4;
+        }
+    }
+
+    .close-button {
+        position: absolute;
+        top: 1.6rem;
+        right: 1.6rem;
+        outline: none;
+        cursor: pointer;
+
+        @include mq(md) {
+            top: 3.2rem;
+            right: 3.2rem;
+        }
+
+        > .icon {
+            fill: #fff;
+        }
+    }
+
+    // slick overrides
+    .slick-slide {
+        line-height: 1;
+        outline: none;
+        transition: opacity $transition-duration-base-min;
+
+        > div {
+            line-height: 1;
+            img {
+                vertical-align: top;
+            }
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+    }
+
+    .slick-next {
+        right: 0;
+    }
+
+}

@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+@if $enable-inputs == true {
+    @keyframes rotate {
+        from {
+            transform: translateY(-50%) rotate(0);
+        }
+        to {
+            transform: translateY(-50%) rotate(360deg);
+        }
+    }
+
+    .input {
+        // raduis для iphone
+
+        > input {
+            @include text-base;
+
+            display: block;
+            padding: .8rem 1rem;
+            width: 100%;
+            line-height: 1.5;
+            color: $color-base;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11), 0 0 0 1px rgba(0, 0, 0, 0.09);
+            outline: none;
+            transition: box-shadow $transition-duration-base;
+            -webkit-appearance: none;
+
+            &[type="phone"] {
+                &::placeholder {
+                    color: $color-base;
+                }
+            }
+
+            &::placeholder {
+                color: $color-placeholder;
+            }
+
+            // input radius for safari
+
+            &:hover,
+            &:focus {
+                box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.11), 0 0 0 1px rgba(0, 0, 0, 0.11);
+            }
+
+            &:disabled {
+                opacity: .2;
+            }
+
+            .mod_flexboxtweener & {
+                min-height: 4rem;
+            }
+
+            @if $enable-jquery-ui-datepicker == true {
+                &.hasDatepicker {
+                    &.hasDatepickerFocus {
+                        // Styles
+                    }
+                }
+            }
+        }
+
+        &.input--invalid {
+            > input {
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11), 0 0 0 1px $color-error;
+
+                &:hover,
+                &:focus {
+                    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.11), 0 0 0 1px $color-error;
+                }
+            }
+        }
+
+        // icons
+        &[data-icon] {
+            &:not(.load-icon) {
+
+            }
+            position: relative;
+
+            > input {
+                padding-left: 4rem;
+            }
+
+            > svg {
+                position: absolute;
+                top: 50%;
+                left: 1rem;
+                transform: translateY(-50%);
+            }
+        }
+
+
+        // search
+        &[data-icon="search"] {
+            fill: $color-base;
+        }
+
+        > .load-icon {
+            display: none;
+        }
+
+        &.is-load {
+            > input {
+                padding-right: 4rem;
+            }
+
+            > .load-icon {
+                display: block;
+                left: auto;
+                right: 1rem;
+                animation: rotate 1s linear infinite;
+            }
+        }
+    }
+}

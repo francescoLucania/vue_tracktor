@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+.auto-status-badge {
+    @include text-minimal(400);
+
+    line-height: 1;
+    display: inline-flex;
+    padding: .5rem;
+    border-radius: 1.2rem;
+    border: 1px solid $color-lighter-secondary;
+
+    > .icon {
+        @include size(1.2rem);
+
+        margin-right: .6rem;
+    }
+
+    > span {
+        color: $color-base;
+        white-space: nowrap;
+    }
+}
+
+
+.information-badge-grid {
+    display: flex;
+    align-items: center;
+
+    @include mq(sm) {
+        position: relative;
+    }
+
+    > li {
+        display: block;
+        max-height: 2.4rem;
+
+        @include mq(sx) {
+            position: relative;
+        }
+
+        &:not(:last-child) {
+            margin-right: .8rem;
+        }
+    }
+}
+
+.auto-card-information-badge {
+    @include text-minimal(400);
+    @include interact(text-decoration, none);
+
+    display: block;
+    padding: .4rem .8rem .3rem;
+    transition: all $transition-duration-base-min;
+
+    &[data-type='grapefruit'] {
+        border-radius: 12px;
+        border: solid 1px;
+        color: $brand-grapefruit;
+    }
+
+    &[data-type='color-base'] {
+        @include interact(border-color, $color-light);
+        border-radius: 12px;
+        border: solid 1px $brand-greyish;
+        color: $color-light;
+    }
+
+    &[data-type='brand-bluish'] {
+        border-radius: 12px;
+        border: solid 1px;
+        color: $brand-bluish;
+    }
+
+    &[data-type='icon'] {
+        @include size(2.4rem);
+
+        padding: 0;
+        font-size: 0;
+
+        > .icon {
+            @include size(100%);
+        }
+    }
+}

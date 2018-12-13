@@ -1,0 +1,43 @@
+
+.help-string {
+    display: inline-flex;
+    align-items: center;
+
+    &__trigger {
+        @include interact(text-decoration, underline);
+        cursor: pointer;
+    }
+
+    &__link {
+        @include size(2rem);
+        @include interact(background, $color-lightest-secondary);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        text-decoration: none !important;
+        background: #fff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.11), 0 0 0 1px rgba(0, 0, 0, 0.09);
+        outline: none;
+        transition: background-color $transition-duration-base-min;
+
+        &::after {
+            @include font(1.2rem);
+
+            font-weight: 900;
+            content: attr(data-help-icon-content);
+        }
+    }
+
+    .tooltip-box {
+        position: static;
+        display: inline-block;
+        margin-left: .6rem;
+
+        @include mq(sx) {
+            position: relative; // for tooltip
+        }
+    }
+}
+

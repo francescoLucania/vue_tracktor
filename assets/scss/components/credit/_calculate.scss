@@ -1,0 +1,342 @@
+@charset "UTF-8";
+
+.credit-calculate {
+
+    &__grid {
+        margin-top: map-get($mq-container-indents, 'sx') / 4;
+
+        @include mq(sx) {
+            margin-top: map-get($mq-container-indents, 'sx');
+        }
+
+        @include mq-custom(min, 1024px) {
+            display: flex;
+            align-items: stretch;
+        }
+    }
+
+    &__auto-block {
+        margin-bottom: map-get($mq-container-indents, 'sx') / 2;
+
+        @include mq(sx) {
+            padding-bottom: calc((#{map-get($mq-container-indents, 'sx')} / 2) - 1px);
+            border-bottom: 1px solid $color-lightest-minimal;
+        }
+
+        @include mq(md) {
+            margin: 0 auto;
+            padding-bottom: calc(#{map-get($mq-container-indents, 'sx')} - 1px);
+        }
+
+        @include mq-custom(min, 1024px) {
+            //flex: 1;
+            padding-right: calc(#{map-get($mq-container-indents, 'sx')} - 1px);
+            padding-bottom: 0;
+            width: 49%;
+            border-right: 1px solid $color-lightest-minimal;
+            border-bottom: 0;
+
+        }
+
+        > .auto-options-grid {
+            margin-top: map-get($mq-container-indents, 'sx') / 4;
+
+            @include mq(sx) {
+                margin-top: map-get($mq-container-indents, 'sx') / 2;
+            }
+        }
+    }
+
+    &__auto-tag-block {
+        display: flex;
+        margin-bottom: map-get($mq-container-indents, 'sx') / 2;
+    }
+
+    &__auto-tag-block-item {
+        line-height: 1;
+
+        &:not(:last-child) {
+            margin-right: .8rem;
+        }
+    }
+
+    &__image-block {
+
+        @include mq(md) {
+            margin: 0 auto;
+            width: 63.2rem;
+        }
+
+        @include mq-custom(min, 1024px) {
+            width: 100%;
+        }
+
+        > img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            vertical-align: top;
+        }
+    }
+
+    &__conditions {
+        @include mq(sx) {
+            margin: map-get($mq-container-indents, 'sx') / 2 auto 0;
+        }
+
+        @include mq(md) {
+            width: calc(51% - map-get($mq-indents, 'sx'));
+        }
+
+        @include mq-custom(min, 1024px) {
+            margin-top: 0;
+            margin-left: map-get($mq-indents, 'sx');
+        }
+    }
+
+    &__conditions-grid {
+        display: flex;
+
+        @include mq(sm) {
+            flex-direction: column-reverse;
+        }
+
+        @include mq(sx) {
+            align-items: stretch;
+        }
+    }
+
+    &__conditions-information,
+    &__conditions-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__conditions-form {
+        @include mq(sx) {
+            width: 50%;
+            padding-right: calc(#{map-get($mq-indents, 'sx')} / 2);
+        }
+
+        @include mq(md) {
+            flex: 1;
+            padding-right: 0;
+        }
+
+        @include mq-custom(min, 1100px) {
+            width: 29.2rem;
+        }
+    }
+
+    &__conditions-information {
+        @include mq(sm) {
+            margin: 0 calc(-1 * (#{map-get($mq-container-indents, 'sx')} / 2) / 2) map-get($mq-container-indents, 'sx') / 2;
+        }
+
+        @include mq(sx) {
+            width: calc(50% - #{map-get($mq-indents, 'sx')} / 2);
+            margin-left: calc(#{map-get($mq-indents, 'sx')} / 2);
+        }
+
+        @include mq(md) {
+            margin-left: map-get($mq-indents, 'sx');
+            width: calc(50% - map-get($mq-indents, 'sx'));
+        }
+    }
+
+    &__conditions-information-fixed-box {
+        @include mq(sm) {
+            padding: map-get($mq-container-indents, 'sx') / 4;
+            border-radius: $border-radius-min;
+            border: 1px solid $color-lightest;
+            transition: all $transition-duration-base-min;
+        }
+
+        &.is-fixed {
+            @include mq(sm) {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 120;
+                background: #fff;
+                border-radius: 0;
+                border: 0;
+                box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.09);
+            }
+        }
+    }
+
+    &__conditions-form-item {
+        &:not(:first-child) {
+            margin-top: map-get($mq-container-indents, 'sx') / 2;
+        }
+    }
+
+    &__conditions-label {
+        > label,
+        > span,
+        > input {
+            display: block;
+            color: $color-light;
+        }
+
+        > label {
+            @include text-small(300);
+
+            margin-bottom: .4rem;
+            line-height: 1.23;
+
+            @include mq(md) {
+                font-weight: 300;
+            }
+        }
+
+        > span,
+        > input {
+            @include header-model-settings-h3;
+
+            line-height: 1.14;
+            outline: none;
+        }
+    }
+
+    &__input-grid {
+        position: relative;
+
+        > input {
+            @include header-model-settings-h3;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            display: none;
+            line-height: 1.14;
+            text-align: right;
+            outline: none;
+            background: #fff;
+
+            + span {
+                @include header-model-settings-h3;
+
+                margin-left: 0;
+                display: inline-block;
+            }
+        }
+
+        > span {
+            @include font(1.3rem, 1.3rem);
+
+            display: inline-block;
+            margin-left: .6rem;
+            font-weight: 400;
+        }
+    }
+
+    &__conditions-input {
+        margin-top: 2rem;
+    }
+
+    &__conditions-input-information {
+        display: flex;
+        justify-content: space-between;
+        margin-top: map-get($mq-container-indents, 'sx') / 4;
+
+        &::before,
+        &::after {
+            font-size: 1.3rem;
+            line-height: 1.23;
+            display: block;
+            color: $color-light;
+        }
+
+        &::before {
+            content: attr(data-min-val);
+        }
+
+        &::after {
+            content: attr(data-max-val);
+        }
+    }
+
+
+
+    &__conditions-information-item {
+        &:not(:first-child) {
+            margin-top: .8rem;
+
+            @include mq(sx) {
+                margin-top: map-get($mq-container-indents, 'sx') / 2;
+            }
+        }
+    }
+
+    &__conditions-information-item-title {
+        @include text-small(300);
+
+        line-height: 1.23;
+        margin-bottom: .4rem;
+        white-space: nowrap;
+        color: $color-light;
+
+        @include mq(sm) {
+            line-height: 1.33;
+        }
+
+        @include mq(md) {
+            font-weight: 300;
+        }
+    }
+
+    &__conditions-value {
+        @include header-model-settings-h3;
+
+        line-height: 1.14;
+        white-space: nowrap;
+        outline: none;
+
+        @include mq(sx) {
+            @include header-h1;
+        }
+
+        > span {
+            @include font(1.3rem, 1.3rem);
+
+            display: inline-block;
+            margin-left: .6rem;
+            font-weight: 400;
+        }
+    }
+
+    &__download {
+        line-height: 1;
+
+        @include mq(sm) {
+            text-align: center;
+            margin-top: map-get($mq-container-indents, 'sx') / 4;
+        }
+
+        @include mq(sx) {
+            margin-top: auto;
+        }
+
+        &.is-mobile {
+            display: none;
+
+            @include mq(sm) {
+                display: block;
+            }
+        }
+
+        &.not-mobile {
+            display: none;
+
+            @include mq(sx) {
+                display: block;
+            }
+        }
+    }
+
+}

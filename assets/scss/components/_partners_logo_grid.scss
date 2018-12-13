@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.partners-logo-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: map-get($mq-container-indents, 'sx') / 2;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    @include mq(sx) {
+        margin-top: map-get($mq-container-indents, 'sx');
+    }
+
+    > li {
+        line-height: 1;
+        min-width: 1px;
+
+        &:not(:first-child) {
+            margin-left: 2rem;
+
+            @include mq(sx) {
+                margin-left: 4rem;
+            }
+        }
+
+        > img {
+            width: auto;
+            vertical-align: top;
+        }
+
+        &:nth-child(8),
+        &:nth-child(7),
+        &:nth-child(6),
+        &:nth-child(5) {
+            display: none;
+        }
+
+        &:nth-child(8) {
+            @include mq(lg) {
+                display: block;
+            }
+        }
+
+        &:nth-child(6),
+        &:nth-child(7) {
+            @include mq(md) {
+                display: block;
+            }
+        }
+
+        &:nth-child(5) {
+            @include mq(sx) {
+                display: block;
+            }
+        }
+    }
+}

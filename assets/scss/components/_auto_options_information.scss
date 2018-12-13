@@ -1,0 +1,154 @@
+@charset "UTF-8";
+
+.auto-options-grid {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: -.5rem;
+
+    &[data-justify-center] {
+        justify-content: center;
+    }
+
+    .auto-options-item {
+        margin-bottom: .5rem;
+    }
+
+    &[data-column] {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &[data-desktop] {
+        display: none;
+
+        @include mq(sx) {
+            display: flex;
+        }
+    }
+
+    &[data-mobile] {
+        display: none;
+
+        @include mq(sm) {
+            display: flex;
+            margin-bottom: 0;
+        }
+
+        > span {
+            @include text-minimal;
+
+            display: block;
+            color: $color-light;
+
+            &:not(:last-child) {
+                margin-right: .4rem;
+            }
+        }
+    }
+}
+
+.auto-options-item {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+
+    &:not(:last-child) {
+        margin-right: map-get($mq-container-indents, 'sx') / 4;
+    }
+
+    > .icon,
+    > span {
+        display: block;
+    }
+
+    > .icon,
+    > i {
+        + span {
+            margin-left: .8rem;
+        }
+    }
+
+    > .icon {
+        @include size(1.3rem, 1.2rem);
+
+        transform: translateY(-.2rem);
+        fill: $color-light;
+
+        &[data-clocks] {
+            @include size(1.4rem);
+        }
+    }
+
+    > span {
+        @include text-minimal;
+
+        color: $color-light;
+    }
+
+    &[data-color] {
+        > i {
+            @include size(2rem);
+
+            min-width: 2rem;
+            border-radius: 50%;
+        }
+    }
+
+    &[data-font-size="xl"] {
+        > span {
+            @include text-base(300);
+        }
+
+        &[data-color] {
+            i {
+                @include size(2.4rem);
+
+                min-width: 2.4rem;
+            }
+        }
+    }
+
+    &[data-bottom-gutter-16] {
+        &:not(:last-child) {
+            margin-bottom: map_get($mq-container-indents, 'sx') / 4;
+        }
+    }
+
+    &[data-download] {
+        > .icon {
+            transform: translateY(0);
+        }
+
+        > span {
+            @include text-base;
+        }
+    }
+}
+
+.auto-options-item-tag {
+    line-height: 1;
+
+    &[data-pts],
+    &[data-in-stock] {
+        @include text-minimal(400);
+
+        display: inline-flex;
+        align-items: center;
+        padding: .2rem .6rem;
+        border-radius: $border-radius-min;
+        border: 1px solid $color-lightest-minimal;
+        background: #fff;
+
+        > .icon {
+            @include size(1.2rem);
+
+            display: block;
+            margin-right: .8rem;
+        }
+
+        > span {
+            white-space: nowrap;
+        }
+    }
+}

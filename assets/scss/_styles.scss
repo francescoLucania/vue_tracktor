@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+@keyframes body {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// 1. Sticky footer
+
+html {
+    font-size: 62.5%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+
+    &.mod_flexboxtweener { // 1
+        height: 100%;
+    }
+}
+
+body {
+    @include text-base;
+
+    background: #fff;
+    font-family: $font-family-text;
+    color: $color-base;
+
+    &.mod_flexboxtweener { // 1
+        height: 100%;
+    }
+
+    @if $enable-mq == false {
+        min-width: $width;
+    }
+
+    .mod_flexboxtweener & { // 1
+        height: 100%;
+    }
+
+    &[data-background="gradient-dark"] {
+        background-color: #f2f2f2;
+        height: 100%;
+
+        > .app > img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 60rem;
+            vertical-align: top;
+            object-fit: cover;
+
+            @include mq(sm) {
+
+                @include mq-custom(max, 440px) {
+                    top: -7rem
+                }
+
+                @include mq-custom(max, 380px) {
+                    top: -5rem
+                }
+            }
+
+            @include mq(sx) {
+                height: 70rem;
+            }
+
+            @include mq(md) {
+                height: auto;
+            }
+        }
+
+        > .app > main {
+            position: relative;
+            z-index: 54;
+        }
+    }
+
+    &[data-background="gradient-medium-dark"] {
+        background: #f3f3f3;
+
+        &::before {
+            position: absolute;
+            top: -10rem;
+            left: 0;
+            right: 0;
+            height: 62.4rem;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+            content: "";
+        }
+
+        > main {
+            position: relative;
+            z-index: 54;
+        }
+    }
+
+    > .app {
+        display: flex; // 1
+        flex-direction: column; // 1
+        min-height: 100vh;
+        height: auto;
+        opacity: 0;
+        animation: body .2s ease-in .8s 1 alternate forwards;
+
+        &--hidden {
+            overflow: hidden; // for model
+        }
+    }
+}
+
+main { // 1
+    .mod_no-flexboxtweener & {
+        flex: 1;
+    }
+
+    .mod_flexboxtweener & {
+        flex-shrink: 0;
+        flex-basis: auto;
+    }
+}
+
+a::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    outline: none;
+
+    &:active,
+    &:focus,
+    &:-moz-focusring {
+        border: 0;
+        outline: none;
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:not([class]) {
+        @include interact(text-decoration, underline);
+
+    }
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+select {
+    border-radius: 0;
+
+    &::-ms-expand { // IE11
+        display: none;
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: $color-lightest;
+}
+
+iframe {
+    border: none;
+}
+
+img {
+    max-width: 100%;
+
+    &[width],
+    &[height] {
+        max-width: none;
+    }
+}
+
+figure {
+    margin: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+small {
+    @include text-minimal();
+}
+
+svg {
+    vertical-align: top;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+:disabled {
+    cursor: not-allowed;
+}
+
+
+a,
+button,
+input {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}

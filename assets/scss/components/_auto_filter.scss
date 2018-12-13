@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+.auto-filter-line {
+    display: flex;
+
+    > .auto-filter {
+        &:not(:last-child) {
+            margin-right: .8rem;
+        }
+    }
+}
+
+.auto-filter {
+    display: flex;
+    justify-content: center;
+    border-radius: 1.6rem;
+    list-style-type: none;
+
+    &__item {
+        &:first-child {
+            > a {
+                border-top-left-radius: 1.6rem;
+                border-bottom-left-radius: 1.6rem;
+            }
+        }
+
+        &:not(:last-child) {
+
+            > a {
+                border-right: 0;
+                padding-right: 2rem;
+            }
+
+            &:not(.auto-filter__item--filter) > a,
+            &:not(.auto-filter__item--sort) > a {
+
+            }
+        }
+
+        &:last-child {
+            > a {
+                border-top-right-radius: 1.6rem;
+                border-bottom-right-radius: 1.6rem;
+            }
+        }
+
+        > a {
+            @include font(1.3rem, 1.6rem);
+            @include interact(background-color, rgba(0, 0, 0, 0.05));
+            @include interact(color, $color-cod-gray);
+            @include interact(fill, $color-cod-gray, 'hover .icon');
+
+            display: block;
+            padding: calc(.8rem - 1px) calc(2rem - 1px);
+            min-height: 3.2rem;
+            color: $color-light;
+            border: 1px solid $color-lighter;
+            white-space: nowrap;
+            text-decoration: none !important;
+            transition: $transition-duration-base-min;
+
+            &[data-number] {
+                &::after {
+                    margin-left: .9rem;
+                    content: attr(data-number);
+                }
+            }
+
+            &.dedicated {
+                @include interact(border-color, $color-cod-gray);
+                @include interact(background-color, $color-cod-gray);
+                @include interact(color, rgba(#fff, .95));
+                @include interact(fill, rgba(#fff, .95), 'hover .icon');
+
+                border-color: $color-cod-gray;
+                background-color: $color-cod-gray;
+                color: #fff;
+
+                &::after {
+                    border-top: 7px solid #fff;
+                }
+
+                > .icon {
+                    fill: #fff;
+                }
+            }
+
+            > .icon {
+                fill: $color-base;
+            }
+        }
+
+        &--sort,
+        &--filter {
+            > a {
+                font-size: 0;
+            }
+        }
+
+        &--filter {
+            &:not(:last-child) {
+                > a {
+                    @include mq(sx) {
+                        border-right: 1px solid;
+                    }
+                }
+            }
+
+            > a {
+                @include mq(sx) {
+                    border-top-right-radius: 1.6rem;
+                    border-bottom-right-radius: 1.6rem;
+                }
+
+                .icon {
+                    @include size(1.6rem, 1.4rem);
+                }
+            }
+        }
+
+        &--sort {
+            display: none;
+
+            @include mq(sm) {
+                display: block;
+            }
+
+            &:not(:last-child) {
+                > a {
+                    border-right: 1px solid;
+                }
+            }
+
+            > a {
+                display: flex;
+                align-items: center;
+
+                @include mq(sm) {
+                    border-top-right-radius: 1.6rem;
+                    border-bottom-right-radius: 1.6rem;
+                }
+
+
+                > .icon {
+                    @include size(1.6rem, 1.4rem);
+                }
+            }
+        }
+
+        &--list {
+            &:not(:last-child) {
+                > a {
+                    padding-right: 3.9rem;
+                }
+            }
+
+            > a {
+                position: relative;
+                padding-right: 3.9rem;
+
+                &::after {
+                    position: absolute;
+                    top: 50%;
+                    right: 1.6rem;
+                    transform: translateY(-50%);
+                    display: block;
+                    pointer-events: none;
+                    border-top: 7px solid $color-base;
+                    border-right: 6px solid transparent;
+                    border-left: 6px solid transparent;
+                    content: "";
+                }
+            }
+        }
+    }
+
+    .auto-filter-tab-item {
+        position: relative;
+        display: block;
+
+        &[data-number] {
+            display: flex;
+            justify-content: space-between;
+
+            &::after {
+                font-weight: 300;
+                color: $color-light;
+                content: attr(data-number);
+            }
+        }
+
+        &.is-checked {
+            i {
+                display: block;
+            }
+        }
+
+        > i {
+            @include size(1.2rem, .9rem);
+
+            position: absolute;
+            top: 50%;
+            right: -.2rem;
+            transform: translate(100%, -50%);
+            display: none;
+            background: {
+                position: 50%;
+                size: contain;
+                image: url(../img/icons/check-black.svg);
+            };
+
+            @include mq(sx) {
+                right: -.6rem;
+            }
+        }
+    }
+}

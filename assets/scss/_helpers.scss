@@ -1,0 +1,70 @@
+.position-relative {
+    position: relative !important;
+}
+
+.is-desktop {
+    display: none;
+
+    @include mq(md) {
+        display: block;
+    }
+}
+
+.is-hide {
+    display: none !important;
+}
+
+.not-sm {
+    @include mq(sm) {
+        display: none !important;
+    }
+}
+
+.not-sx {
+    @include mq(sx) {
+        @include mq-custom(max, 912px) {
+            display: none !important;
+        }
+    }
+}
+
+.is-lg {
+    @include mq(lg) {
+        display: block !important;
+    }
+}
+
+.is-sm {
+    display: none !important;
+
+    @include mq(sm) {
+        display: block !important;
+    }
+}
+
+.not-sm {
+    display: none !important;
+
+    @include mq(sx) {
+        display: block !important;
+    }
+}
+
+.text-align-center {
+    text-align: center !important;
+}
+
+.text-align-left {
+    text-align: left !important;
+}
+
+.font-weight-normal {
+    font-weight: 400 !important;
+}
+
+.order-1 {
+    order: 1;
+}
+.order-2 {
+    order: 2;
+}
