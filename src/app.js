@@ -10,3 +10,4 @@ window.onload = function () {
         render: h => h(App)
     })
 }
+
